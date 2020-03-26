@@ -3,9 +3,8 @@ sudo apt-get update
 sudo apt-get upgrade
 
 ## Setting some variables
-echo "# Export folder for personal files" > ~/.bashrc
-echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" > ~/.bashrc
-echo "alias python='python3'" > ~/.bashrc
+echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
+echo "alias python='python3'" >> ~/.bashrc
 
 ## Set proxy in git
 git config --global http.proxy http://172.16.2.30:8080
