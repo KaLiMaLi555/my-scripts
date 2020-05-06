@@ -26,6 +26,11 @@ install_useful()
     sudo apt-get install vim -y
     update_sys
     sudo apt-get install p7zip-full -y
+    sudo apt-get install snapd
+    sudo snap install discord --classic
+    wget https://downloads.slack-edge.com/linux_releases/slack-desktop-4.0.2-amd64.deb
+    sudo apt-get install ./slack-desktop-*.deb
+    rm slack-desktop-*.deb
 }
 
 install_useful
