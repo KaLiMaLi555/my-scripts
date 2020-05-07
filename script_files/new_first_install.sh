@@ -1,6 +1,14 @@
 #!/bin/bash
 cwd=$(pwd)
 
+greet()
+{
+    printf "************************************************************\n\n"
+    echo "Hi" $USER
+    printf "You are running Installation Scripts by KaLiMaLi555"
+    printf "\n\n************************************************************\n\n"
+}
+
 get_permission()
 {
     ## Reading for mode of installation
@@ -24,6 +32,7 @@ update_sys()
     sudo apt-get upgrade -y
 }
 
+greet
 ## Starting script for Installation
 get_permission "Default"
 
@@ -111,10 +120,11 @@ else
     # Installing some useful packages
     echo "\n\nInstalling git, vim, 7z and proxy-master\n\n"
     cd useful
-    bash install_packages,sh
+    bash install_packages.sh
     cd $cwd
 
     # Permission for installing chrome
+    get_permission "Google-Chrome"
     if [[ "$?" =~ [1] ]]
         then
             echo "\n\nInstalling Google-Chrome\n\n"
@@ -124,21 +134,23 @@ else
     fi
 
     # Permission for installing opencv
+    get_permission "OpenCV"
     if [[ "$?" =~ [1] ]]
         then
-        echo "\n\nInstalling Opencv\n\n"
-        cd opencv
-        bash install_opencv.sh
-        cd $cwd
+            echo "\n\nInstalling Opencv\n\n"
+            cd opencv
+            bash install_opencv.sh
+            cd $cwd
     fi
 
     # Permission for installing zsh
+    get_permission "ZSH"
     if [[ "$?" =~ [1] ]]
         then
-        echo "\n\nInstalling and setting up zsh\n\n"
-        cd zsh
-        bash install_zsh.sh
-        cd $cwd
+            echo "\n\nInstalling and setting up zsh\n\n"
+            cd zsh
+            bash install_zsh.sh
+            cd $cwd
     fi
 fi
 
