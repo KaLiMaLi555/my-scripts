@@ -77,6 +77,12 @@ then
     bash install_opencv.sh
     cd $cwd
 
+    # Installing Ros
+    echo "\n\nInstalling Ros\n\n"
+    cd ros
+    bash install_ros.sh
+    cd $cwd
+
     # Installing zsh
     # Comment if not required
     echo "\n\nInstalling and setting up zsh\n\n"
@@ -140,6 +146,16 @@ else
             echo "\n\nInstalling Opencv\n\n"
             cd opencv
             bash install_opencv.sh
+            cd $cwd
+    fi
+
+    # Permission for installing ros
+    get_permission "Ros"
+    if [[ "$?" =~ [1] ]]
+        then
+            echo "\n\nInstalling Ros\n\n"
+            cd ros
+            bash install_ros.sh
             cd $cwd
     fi
 
