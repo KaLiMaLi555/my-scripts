@@ -73,7 +73,7 @@ install_opencv()
     sudo make install
     sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
     sudo ldconfig
-    ln -s $(find /usr/local/lib/ -type f -name "cv2*.so") ~/.virtualenvs/facecourse-py3/lib/python3.6/site-packages/cv2.so
+    ln -s $(find /usr/local/lib/ -type f -name "cv2*.so") ~/.virtualenvs/cv-py3/lib/python3.6/site-packages/cv2.so
 }
 
 update_sys
