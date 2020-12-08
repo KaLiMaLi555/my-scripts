@@ -1,0 +1,83 @@
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        output_format = "i3bar"
+        colors = true
+        markup = pango
+        interval = 5
+        color_good = '#2f343f'
+        color_degraded = '#ebcb8b'
+        color_bad = '#ba5e57'
+}
+
+order += "load"
+order += "cpu_usage"
+# order += "memory"
+order += "cpu_temperature 0"
+order += "disk /"
+order += "disk /home"
+order += "ethernet enp2s0"
+order += "wireless wlp3s0"
+order += "volume master"
+order += "battery 1"
+order += "tztime local"
+
+cpu_temperature 0 {
+        format = "<b><span background='#ff5555'>  </span><span background='#e5e9f0'> %degrees °C </span></b>"
+        path = "/sys/class/thermal/thermal_zone2/temp"
+}
+
+cpu_usage {
+        format = "<b><span background='#00ff00'>  </span><span background='#e5e9f0'> %usage </span></b>"
+        max_threshold = 75
+        format_above_threshold = "<b><span background='#ff0000R'>  </span><span background='#e5e9f0'> %usage </span></b>"
+}
+
+load {
+        format = "<b><span background='#50fa7b'>  </span><span background='#e5e9f0'> %5min Load </span></b>"
+}
+
+disk "/" {
+        format = "<b><span background='#f1fa8c'>  </span><span background='#e5e9f0'> %free Free </span></b>"
+}
+
+ethernet enp2s0 {
+        format_up = "<b><span background='#50fa7b'>  </span><span background='#e5e9f0'> %ip </span></b>"
+        format_down = "<b><span background='#b48ead'>  Disconnected </span></b>"
+}
+
+wireless wlp3s0 {
+        format_up = "<b><span background='#FF0000'>  </span><span background='#e5e9f0'> %essid </span></b>"
+        format_down = "<b><span background='#b48ead'>  Disconnected </span></b>"
+}
+
+
+volume master {
+        format = "<b><span background='#ff79c6'> ♪ </span><span background='#e5e9f0'> %volume </span></b>"
+        format_muted = "<b><span background='#ff79c6'>  </span><span background='#e5e9f0'> Muted </span></b>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+battery 1 {
+        last_full_capacity = true
+        format = "<b><span background='#FFC000'>  </span><span background='#e5e9f0'>  %status %percentage </span></b>"
+        format_down = "No Battery"
+        status_chr = "Charging"
+        status_bat = "Battery"
+        status_unk = "Unknown"
+        status_full = "Charged"
+        path = "/sys/class/power_supply/BAT0/uevent"
+        low_threshold = 10
+}
+
+tztime local {
+        format = "<b><span background='#8be9fd'>  </span><span background='#e5e9f0'> %time </span></b>"
+        format_time = "%a %-d %b %H:%M"
+}
+
+# TODO
+# Write py3status scripts to customise i3status bar

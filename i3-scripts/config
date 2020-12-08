@@ -1,0 +1,203 @@
+########################################
+#                                      #
+#       i3 config - KaLiMaLi555        #
+#                                      #
+########################################
+
+# Setting the Mod key
+# Current Alt
+set $mod Mod1
+
+# Set other keys
+set $super Mod4
+set $ctrl Ctrl
+set $shift Shift
+
+# Set custom fonts 
+font pango: Noto Sans 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $super
+
+# start a terminal
+bindsym $ctrl+$mod+t exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+$shift+q kill
+
+# start Application Menu
+bindsym $mod+$shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
+bindsym $mod+d exec rofi -lines 15 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+
+# Custom key-bindings
+bindsym $super+$shift+f exec nemo 
+bindsym $mod+$shift+s exec subl
+# Google Chrome
+bindsym Ctrl+$mod+g exec google-chrome --password-store=gnome
+# Stick-notes
+bindsym $super+n exec indicator-stickynotes
+# Wifi connection settings
+bindsym $super+w exec nmtui
+
+# ScreenShot 
+bindsym --release Print exec scrot -e 'viewnior ~/$f && mkdir -p ~/Pictures/\$(date +%F) && mv ~/$f ~/Pictures/\$(date +%F)/\$(date +%F_%T).png'
+bindsym --release $ctrl+Print exec scrot -s -e 'mkdir -p ~/Pictures/\$(date +%F) && mv ~/$f ~/Pictures/\$(date +%F)/\$(date +%F_%T).png'
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +10% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -10% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec set_brightness -inc 500 # increase screen brightness
+bindsym XF86MonBrightnessDown exec set_brightness -dec 500 # decrease screen brightness
+
+# Compton
+exec_always --no-startup-id compton --config ~/.config/compton.conf &
+# Setting Wallpaper
+exec_always --no-startup-id feh --bg-fill ~/.home_wallpaper
+
+# Tapping enabled
+exec_always xinput set-prop 12 322 1
+# Natural scrolling enabled
+exec_always xinput set-prop 12 306 1
+
+# Change Focus using Arrow Keys
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
+
+# move focused window
+bindsym $mod+$ctrl+Left move left
+bindsym $mod+$ctrl+Down move down
+bindsym $mod+$ctrl+Up move up
+bindsym $mod+$ctrl+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+c focus child
+
+# switch to workspace
+bindsym Ctrl+1 workspace 1
+bindsym Ctrl+2 workspace 2
+bindsym Ctrl+3 workspace 3
+bindsym Ctrl+4 workspace 4
+bindsym Ctrl+5 workspace 5
+bindsym Ctrl+6 workspace 6
+bindsym Ctrl+7 workspace 7
+bindsym Ctrl+8 workspace 8
+bindsym Ctrl+9 workspace 9
+bindsym Ctrl+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
+		# bindings, For exitting i3 without mouse
+		bindsym l exec i3-msg exit
+		bindsym r exec systemctl reboot
+		bindsym s exec systemctl shutdown
+		bindsym Escape mode "default"
+		bindsym Return mode "default"
+}
+bindsym $mod+Shift+e mode "exit: [l]ogout, [r]eboot, [s]hutdown"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # bindings, For the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        separator_symbol "|"
+        font pango:DejaVu Sans Mono 10
+        colors 
+        {
+                background #2f343f
+                statusline #2f343f
+                separator #4b5262
+
+                # colour of border, background, and text
+                focused_workspace       #2f343f #bf616a #d8dee8
+                active_workspace        #2f343f #2f343f #d8dee8
+                inactive_workspace      #2f343f #2f343f #d8dee8
+                urgent_workspacei       #2f343f #ebcb8b #2f343f
+        }
+        status_command i3status
+}
+
+# colour of border, background, text, indicator, and child_border
+client.focused              #ffffff #2f343f #d8dee8 #bf616a #d8dee8
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background           #2f343f
+
+# Window assignment on startup
+for_window [class=".*"] border pixel 4
+assign [class=Google-chrome] 1
+assign [class=X-terminal-emulator] 2
+assign [class=Sublime_text] 3
+assign [class=Nemo] 4
+assign [class=discord] 5
+assign [class="Microsoft Teams - Preview"] 5
+assign [class=okular] 6
+assign [class=Evince] 7
+assign [class=Indicator-stickynotes] 8
+assign [class=TeamViewer] 10
+for_window [class=Viewnior|feh|Pavucontrol|Rofi|Eog] floating enable
+
+exec_always google-chrome --password-store=gnome
+exec_always i3-sensible-terminal
+exec_always subl
+exec_always nemo 
+exec_always discord
+exec_always indicator-stickynotes
