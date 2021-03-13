@@ -24,6 +24,7 @@ set wildmenu                               " visual autocomplete for command men
 set showmatch                              " highlight matching [{()}]
 set showcmd                                " show command in bottom bar
 set statusline^=%{coc#status()}            " Status Bar for coc
+set scrolloff=10
 
 """"""""""""""""""""""""
 " Searching            "
@@ -36,3 +37,5 @@ set hlsearch                               " highlight matches
 """"""""""""""""""""""""
 set undodir="~/.config/nvim/.undodir"
 set undofile
+
+set nofixendofline

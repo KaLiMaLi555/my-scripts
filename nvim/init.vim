@@ -16,6 +16,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug '907th/vim-auto-save'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 " Sets
