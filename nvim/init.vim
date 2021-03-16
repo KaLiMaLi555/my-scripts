@@ -17,6 +17,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug '907th/vim-auto-save'
 Plug 'preservim/nerdtree'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Sets

@@ -17,3 +17,8 @@ nnoremap <leader>ws :FixWhitespace<CR>
 " Bindings for FZF
 nnoremap <C-T> :FZF<CR>
 nnoremap <C-B> :Buffers<CR>
+
+" Mappings for vim-fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gj :diffget //3<CR>
+nmap <leader>gf :diffget //2<CR>
