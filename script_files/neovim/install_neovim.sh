@@ -8,9 +8,9 @@ sudo apt install unzip -y
 sudo apt install git -y
 sudo apt install python3-pynvim -y
 sudo apt install lua5.1 -y
+sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 
 git clone https://github.com/neovim/neovim.git
-git checkout release-0.6
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 
