@@ -1,0 +1,45 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+env:
+    TERM: alacritty
+    WINIT_X11_SCALE_FACTOR: '1'
+
+window:
+    dynamic_padding: true
+    startup_mode: Maximized
+    padding:
+        x: 1
+        y: 1
+
+selection:
+    semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+    save_to_clipboard: true
+
+import:
+    - $HOME/.config/themes/dracula-theme/themes/alacritty/dracula.yml
+
+scrolling:
+    history: 10000
+    multiplier: 10
+
+font:
+    normal:
+        family: Hack
+    size: 10
+
+draw_bold_text_with_bright_colors: true
+
+cursor:
+    style:
+      shape: Beam
+
+background_opacity: 1.0
+
+key_bindings:
+    - { key: V, mods: Control|Shift, action: Paste }
+    - { key: C, mods: Control|Shift, action: Copy }
+    - { key: Key0, mods: Control, action: ResetFontSize }
+    - { key: NumpadAdd, mods: Control, action: IncreaseFontSize }
+    - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize }
+
+live_config_reload: true
